@@ -1,0 +1,25 @@
+{
+  "name": "blockchain-of-mine",
+  "version": "1.0.0",
+  "description": "self blockchain",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wellmonge/blockchain-of-mine.git"
+  },
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "monge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wellmonge/blockchain-of-mine/issues"
+  },
+  "homepage": "https://github.com/wellmonge/blockchain-of-mine#readme"
+}
