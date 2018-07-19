@@ -12,24 +12,7 @@ const currentBlockData = [{
     amount: 0,
     sender: '3o2ijhno32n3io2huih32'
 }];
-const nonce = 122;
 
-const hash = mongecoin.hashBlock(previousBlockHash, currentBlockData, nonce);
+const nonce = mongecoin.proofOfWork(previousBlockHash, currentBlockData);
 
-mongecoin.createNewBlock(123456,previousBlockHash, hash);
-
-mongecoin.createNewTransaction(100,'MONGESADASFDSADF','ALBERTPTKROPYHRTK');
-
-mongecoin.createNewBlock(213123,'VEVREFDVSADSFSFS','JDJAIODSJAODJSA');
-
-
-mongecoin.createNewTransaction(50,'MONGESADASFDSADF','ALBERTPTKROPYHRTK');
-
-mongecoin.createNewTransaction(300,'MONGESADASFDSADF','ALBERTPTKROPYHRTK');
-
-mongecoin.createNewTransaction(2000,'MONGESADASFDSADF','ALBERTPTKROPYHRTK');
-
-mongecoin.createNewBlock(2131232,'DASFASWFGSDAGFSD','ÇLOIÇLIOÇIOÇOI');
-
-
-console.log(mongecoin.chain[2]);
+console.log(nonce);
