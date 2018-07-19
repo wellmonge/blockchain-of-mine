@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/wellmonge/blockchain-of-mine#readme",
   "dependencies": {
+    "express": "^4.16.3",
     "sha256": "^0.2.0"
   }
 }

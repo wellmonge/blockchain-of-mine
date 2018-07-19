@@ -15,4 +15,5 @@ const currentBlockData = [{
 
 const nonce = mongecoin.proofOfWork(previousBlockHash, currentBlockData);
 
+this.createNewBlock(5963,'59630','596326');
 console.log(nonce);
