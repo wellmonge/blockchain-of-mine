@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const Blockchain = require('./dev/blockchain');
 const uuid = require('uuid/v1');
+const rp = require('request-promise');
 const port = process.argv[2];
 
 const nodeAddress = uuid().split('-').join('');
@@ -26,7 +27,22 @@ app.post('/transaction',function(req,res){
 
 //register a node and broadcast it the network
 app.post('/register-and-broadcast-node',function(req,res){
-    const newNodeUrl = req.body.newNodeUrl
+    const newNodeUrl = req.body.newNodeUrl;
+    if (mongecoin.networkNodes.indexOf(newNodeUrl) == -1) mongecoin.networkNodes.push(newNodeUrl);
+
+    const registerNodesPromises = [];
+    mongecoin.networkNodes.forEach(networkNodeUrl => {
+        const requestOptions = {
+            uri: `${networkNodeUrl}/register-node`,
+            method: 'POST',
+            body: { newNodeUrl: newNodeUrl },
+            json: true
+        }
+
+        registerNodesPromises.push(rp(requestOptions));
+    });
+
+
     
     
     res.json({
