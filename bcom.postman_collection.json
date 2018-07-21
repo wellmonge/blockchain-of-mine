@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "3dac9188-90bc-4c2c-9c5c-d154fbb45907",
+		"name": "blockchainofmine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "blockchain",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/blockchain",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blockchain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":300.00,\n\t\"sender\" : \"F698B953921B60B8782F3BB78ADB19FEA1572144917745B62E4C38FE3D175EB6\",\n\t\"recipient\":\"55991C9FA2BA23659361661B58193A50C7411414D8D781BB2A712AA252DF4CE9\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mine"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
