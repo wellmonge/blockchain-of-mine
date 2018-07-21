@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const Blockchain = require('./dev/blockchain');
 const uuid = require('uuid/v1');
+const port = process.argv[2];
+
+console.log(port);
 
 const nodeAddress = uuid().split('-').join('');
 console.log(nodeAddress);
@@ -14,7 +17,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.get('/blockchain',function(req,res){
     res.send(mongecoin);
 });
-
 
 app.post('/transaction',function(req,res){
     const blockIndex = mongecoin.createNewTransaction(req.body.amount,req.body.sender,req.body.recipient);
@@ -45,5 +47,5 @@ app.get('/mine',function(req,res){
 });
 
 app.listen(3000, function () {
-console.log('up and running');    
+    console.log(`up and running on port ${port}...`);    
 });
