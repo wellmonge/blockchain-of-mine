@@ -4,7 +4,7 @@ function Blockchain() {
     this.chain = [];
     this.pendingTransactions = [];
 
-    this.createNewBlock(5963,'59630','596326');
+    this.createNewBlock(0,'9E21CDEF480B30ACAE5FD96CFDDDA696F2A2067331CAA5EB2BF9F697F9D45642','FE8715382551436625D700541BE3C203F8DF1D5DBD6061157AAD111477C99FE9');
 
 }
 
@@ -40,7 +40,7 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient){
 }
 
 Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, nonce){
-    const datAsString = previousBlockHash + nonce.toString + JSON.stringify(currentBlockData);
+    const datAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData);
     const hash = sha256(datAsString);
     return hash;
 }
@@ -49,9 +49,10 @@ Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, n
 Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData){
     let nonce = 0;
     let hash = this.hashBlock(previousBlockHash,currentBlockData, nonce);
-    while (hash.substring(0, 4) !== '0'){
+    while (hash.substring(0, 4) !== 'm4g5'){
         nonce++;
         hash = this.hashBlock(previousBlockHash,currentBlockData, nonce);
+        console.log(hash)
     }
     return nonce;
 }

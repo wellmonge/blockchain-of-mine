@@ -1,19 +1,22 @@
 const Blockchain = require('../dev/blockchain');
 
 const mongecoin = new Blockchain(); 
-const previousBlockHash = '23OJ2O3J4O32O5NMOJOJ432';
+const previousBlockHash = '9E21CDEF480B30ACAE5FD96CFDDDA696F2A2067331CAA5EB2BF9F697F9D45642';
 const currentBlockData = [{
-    amount: 0,
-    sender: '3o2ijhno32n3io2huih32'
+    amount: 10,
+    sender: '67A90A5D92C6FDA60C32886C04DF3D229FADB02C063DCBAB06364057862C0B19',
+    recipient: '67A90A5D92C6FDA60C32886C04DF3D229FADB02C063DCBAB06364057862C0B19',
+    
 },{
-    amount: 0,
-    sender: '3o2ijhno32n3io2huih32'
+    amount: 222,
+    sender: '67A90A5D92C6FDA60C32886C04DF3D229FADB02C063DCBAB06364057862C0B19',
+    recipient: '67A90A5D92C6FDA60C32886C04DF3D229FADB02C063DCBAB06364057862C0B19',
+    
 },{
-    amount: 0,
-    sender: '3o2ijhno32n3io2huih32'
+    amount: 3333,
+    sender: '67A90A5D92C6FDA60C32886C04DF3D229FADB02C063DCBAB06364057862C0B19',
+    recipient: '67A90A5D92C6FDA60C32886C04DF3D229FADB02C063DCBAB06364057862C0B19',
+    
 }];
 
-const nonce = mongecoin.proofOfWork(previousBlockHash, currentBlockData);
-
-this.createNewBlock(5963,'59630','596326');
-console.log(nonce);
+console.log(mongecoin.proofOfWork(previousBlockHash, currentBlockData));
