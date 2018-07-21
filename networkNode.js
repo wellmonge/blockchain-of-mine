@@ -5,10 +5,8 @@ const Blockchain = require('./dev/blockchain');
 const uuid = require('uuid/v1');
 const port = process.argv[2];
 
-console.log(port);
-
 const nodeAddress = uuid().split('-').join('');
-console.log(nodeAddress);
+
 const mongecoin = new Blockchain();
 
 app.use(bodyParser.json());
@@ -25,6 +23,37 @@ app.post('/transaction',function(req,res){
         note: `Transaction will be add in block ${blockIndex}.`
     });
 });
+
+//register a node and broadcast it the network
+app.post('/register-and-broadcast-node',function(req,res){
+    const newNodeUrl = req.body.newNodeUrl
+    
+    
+    res.json({
+        note: `Transaction will be add in block .`
+    });
+});
+
+//register a node with the network
+app.post('/register-node',function(req,res){
+    const newNodeUrl = req.body.newNodeUrl
+    
+    
+    res.json({
+        note: `Transaction will be add in block .`
+    });
+});
+
+//register a node with the network
+app.post('/register-nodes-bulk',function(req,res){
+    const newNodeUrl = req.body.newNodeUrl
+    
+    
+    res.json({
+        note: `Transaction will be add in block .`
+    });
+});
+
 
 app.get('/mine',function(req,res){
     const lastBlock = mongecoin.getLastBlock();
@@ -46,6 +75,6 @@ app.get('/mine',function(req,res){
     });  
 });
 
-app.listen(3000, function () {
+app.listen(port, function () {
     console.log(`up and running on port ${port}...`);    
 });
