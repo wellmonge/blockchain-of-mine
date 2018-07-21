@@ -42,9 +42,10 @@ app.post('/register-and-broadcast-node',function(req,res){
         registerNodesPromises.push(rp(requestOptions));
     });
 
+    Promise.all(registerNodesPromises).then(data => {
 
-    
-    
+    });
+
     res.json({
         note: `Transaction will be add in block .`
     });
