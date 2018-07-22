@@ -6,17 +6,17 @@
 	},
 	"item": [
 		{
-			"name": "blockchain",
+			"name": "blockchain - NODE 1",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "localhost:3000/blockchain",
+					"raw": "localhost:3001/blockchain",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3001",
 					"path": [
 						"blockchain"
 					]
@@ -25,7 +25,64 @@
 			"response": []
 		},
 		{
-			"name": "transaction",
+			"name": "blockchain - NODE 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3002/blockchain",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"blockchain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blockchain - NODE 3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3003/blockchain",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"blockchain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blockchain - NODE 4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3004/blockchain",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"blockchain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction - NODE 1",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -39,11 +96,11 @@
 					"raw": "{\n\t\"amount\":300.00,\n\t\"sender\" : \"F698B953921B60B8782F3BB78ADB19FEA1572144917745B62E4C38FE3D175EB6\",\n\t\"recipient\":\"55991C9FA2BA23659361661B58193A50C7411414D8D781BB2A712AA252DF4CE9\"\n\t\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/transaction",
+					"raw": "localhost:3001/transaction",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3001",
 					"path": [
 						"transaction"
 					]
@@ -52,7 +109,115 @@
 			"response": []
 		},
 		{
-			"name": "mine",
+			"name": "transaction - NODE 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":300.00,\n\t\"sender\" : \"F698B953921B60B8782F3BB78ADB19FEA1572144917745B62E4C38FE3D175EB6\",\n\t\"recipient\":\"55991C9FA2BA23659361661B58193A50C7411414D8D781BB2A712AA252DF4CE9\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3002/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction  - NODE 3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":300.00,\n\t\"sender\" : \"F698B953921B60B8782F3BB78ADB19FEA1572144917745B62E4C38FE3D175EB6\",\n\t\"recipient\":\"55991C9FA2BA23659361661B58193A50C7411414D8D781BB2A712AA252DF4CE9\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3003/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction  - NODE 4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":300.00,\n\t\"sender\" : \"F698B953921B60B8782F3BB78ADB19FEA1572144917745B62E4C38FE3D175EB6\",\n\t\"recipient\":\"55991C9FA2BA23659361661B58193A50C7411414D8D781BB2A712AA252DF4CE9\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3004/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction  - NODE 5",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":300.00,\n\t\"sender\" : \"F698B953921B60B8782F3BB78ADB19FEA1572144917745B62E4C38FE3D175EB6\",\n\t\"recipient\":\"55991C9FA2BA23659361661B58193A50C7411414D8D781BB2A712AA252DF4CE9\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3005/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine - NODE 1",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -63,11 +228,107 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "localhost:3000/mine",
+					"raw": "localhost:3001/mine",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3001",
+					"path": [
+						"mine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine  - NODE 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3002/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"mine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine  - NODE 3",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3003/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"mine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine  - NODE 4",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3004/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"mine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine  - NODE 5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3005/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
 					"path": [
 						"mine"
 					]
