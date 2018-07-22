@@ -57,19 +57,16 @@ app.post('/register-and-broadcast-node',function(req,res){
         .then(data => {
             res.json({note : 'New node registered with network   successfully.'});
         });
-
-    res.json({
-        note: `Transaction will be add in block .`
-    });
 });
 
 //register a node with the network
 app.post('/register-node',function(req,res){
     const newNodeUrl = req.body.newNodeUrl
-    
-    
+    const nodeNotAlreadyPresent = mongecoin.networkNodes.indexOf(newNodeUrl) == -1;
+    const notCurrentNode = mongecoin.currentNodeUrl !== newNodeUrl;
+    if (nodeNotAlreadyPresent && notCurrentNode) mongecoin.networkNodes.push(newNodeUrl);
     res.json({
-        note: `Transaction will be add in block .`
+        note: `New node registered successfully.`
     });
 });
 
