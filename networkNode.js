@@ -42,9 +42,21 @@ app.post('/register-and-broadcast-node',function(req,res){
         registerNodesPromises.push(rp(requestOptions));
     });
 
-    Promise.all(registerNodesPromises).then(data => {
+    Promise.all(registerNodesPromises)
+        .then(data => {
+            const bulkRegistraterOptions = {
+                uri: `${newNodeUrl}/register-nodes-bulk`,
+                method: 'POST',
+                body: { allNetworkNodes: [ ...mongecoin.networkNodes, mongecoin.currentNodeUrl ] },
+                json: true
+            }
 
-    });
+            return rp(bulkRegistraterOptions);
+
+        })
+        .then(data => {
+            res.json({note : 'New node registered with network   successfully.'});
+        });
 
     res.json({
         note: `Transaction will be add in block .`
