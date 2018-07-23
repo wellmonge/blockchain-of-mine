@@ -70,16 +70,21 @@ app.post('/register-node',function(req,res){
     });
 });
 
-//register a node with the network
+//register a multiple nodes at once
 app.post('/register-nodes-bulk',function(req,res){
-    const newNodeUrl = req.body.newNodeUrl
+    const allNetworkNodes = req.body.allNetworkNodes
     
-    
+    allNetworkNodes.forEach(networkNodeUrl =>
+        {
+            const notCurrentNode = mongecoin.currentNodeUrl !== networkNodeUrl;
+            const nodeNotAlreadyPresent = mongecoin.networkNodes.indexOf(networkNodeUrl) == -1;
+            if (nodeNotAlreadyPresent && notCurrentNode) mongecoin.networkNodes.push(networkNodeUrl)
+        });
+
     res.json({
-        note: `Transaction will be add in block .`
+        note: `Bulk registration successful.`
     });
 });
-
 
 app.get('/mine',function(req,res){
     const lastBlock = mongecoin.getLastBlock();
