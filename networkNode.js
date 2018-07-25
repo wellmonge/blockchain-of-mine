@@ -25,6 +25,31 @@ app.post('/transaction',function(req,res){
     });
 });
 
+app.post('/transaction/broadcast', function (req, res) {
+    const newTransaction = mongecoin.createNewTransaction(req.body.amount,req.body.sender,req.body.recipient);
+    mongecoin.addTransactionToPendingTransactions(newTransaction);
+
+    const requestPromises = [];
+    mongecoin.networkNodes.forEach(networkNodeUrl =>{
+        const requestOptions = {
+            uri: networkNodeUrl + '/transaction',
+            method: 'POST',
+            body: newTransaction,
+            json: true
+        };
+
+        requestPromises(rp(requestOptions));
+    });
+
+    Promise.all(requestPromises)
+        .then(data => {
+            res.json({
+                note: `Transaction created and broadcast successfully.`
+            });
+        });
+
+});
+
 //register a node and broadcast it the network
 app.post('/register-and-broadcast-node',function(req,res){
     const newNodeUrl = req.body.newNodeUrl;
