@@ -18,8 +18,9 @@ app.get('/blockchain',function(req,res){
 });
 
 app.post('/transaction',function(req,res){
-    const blockIndex = mongecoin.createNewTransaction(req.body.amount,req.body.sender,req.body.recipient);
-
+    const newTransaction = req.body;
+    mongecoin.addTransactionToPendingTransactions(newTransaction);
+         
     res.json({
         note: `Transaction will be add in block ${blockIndex}.`
     });
