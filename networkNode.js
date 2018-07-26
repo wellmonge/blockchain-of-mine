@@ -22,7 +22,7 @@ app.post('/transaction',function(req,res){
     mongecoin.addTransactionToPendingTransactions(newTransaction);
          
     res.json({
-        note: `Transaction will be add in block ${blockIndex}.`
+        note: `Transaction will be add in block.`
     });
 });
 
@@ -39,7 +39,7 @@ app.post('/transaction/broadcast', function (req, res) {
             json: true
         };
 
-        requestPromises(rp(requestOptions));
+        requestPromises.push(rp(requestOptions));
     });
 
     Promise.all(requestPromises)
