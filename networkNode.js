@@ -126,10 +126,41 @@ app.get('/mine',function(req,res){
     mongecoin.createNewTransaction(12.5,`00`,nodeAddress);
 
     const newBlock = mongecoin.createNewBlock(nonce, previousBlockHash, blockHash);
-    res.json({
-        note:'New block mined successfully',
-        block: newBlock
-    });  
+
+    const requestPromises = []
+    mongecoin.networkNodes.forEach(newtworkNodeUrl => {
+        const requestOptions = {
+            uri: newtworkNodeUrl + '/receive-new-block',
+            method: 'POST',
+            data: { newBlock: newBlock },
+            json: true
+        }
+
+        requestPromises.push(rp(requestOptions));
+    });
+
+    Promise.all(requestPromises)
+    .then(data => {
+        const requestOptions = {
+
+            uri: mongecoin.currentNodeUrl + '/transaction/broadcast',
+            method: 'POST',
+            body: {
+                amount: 12.5,
+                sender:"00",
+                recipient: nodeAddress
+            },
+            json: true
+        };
+
+        return rp(requestOptions)
+    })
+    .then(data => {
+        res.json({
+            note:'New block mined successfully',
+            block: newBlock
+        }); 
+    });
 });
 
 app.listen(port, function () {
