@@ -127,7 +127,8 @@ app.get('/mine',function(req,res){
 
     const newBlock = mongecoin.createNewBlock(nonce, previousBlockHash, blockHash);
 
-    const requestPromises = []
+    const requestPromises = [];
+
     mongecoin.networkNodes.forEach(newtworkNodeUrl => {
         const requestOptions = {
             uri: newtworkNodeUrl + '/receive-new-block',
@@ -162,6 +163,14 @@ app.get('/mine',function(req,res){
         }); 
     });
 });
+
+app.post('receive-new-block', function (req, res) {
+    const newBlock = req.body.newNodeUrl;
+    const lastBlock = mongecoin.getLastBlock();
+    const correct lastBlock.hash === newBlock.previousBlockHash;
+
+    
+})
 
 app.listen(port, function () {
     console.log(`up and running on port ${port}...`);    
