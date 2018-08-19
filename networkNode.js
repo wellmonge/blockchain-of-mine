@@ -126,11 +126,69 @@ app.get('/mine',function(req,res){
     mongecoin.createNewTransaction(12.5,`00`,nodeAddress);
 
     const newBlock = mongecoin.createNewBlock(nonce, previousBlockHash, blockHash);
-    res.json({
-        note:'New block mined successfully',
-        block: newBlock
-    });  
+
+    const requestPromises = [];
+
+    mongecoin.networkNodes.forEach(newtworkNodeUrl => {
+        const requestOptions = {
+            uri: newtworkNodeUrl + '/receive-new-block',
+            method: 'POST',
+            data: { newBlock: newBlock },
+            json: true
+        }
+
+        requestPromises.push(rp(requestOptions));
+    });
+
+    Promise.all(requestPromises)
+    .then(data => {
+        const requestOptions = {
+
+            uri: mongecoin.currentNodeUrl + '/transaction/broadcast',
+            method: 'POST',
+            body: {
+                amount: 12.5,
+                sender:"00",
+                recipient: nodeAddress
+            },
+            json: true
+        };
+
+        return rp(requestOptions)
+    })
+    .then(data => {
+        res.json({
+            note:'New block mined and broadcast successfully',
+            block: newBlock
+        }); 
+    });
 });
+
+app.post('receive-new-block', function (req, res) {
+    const newBlock = req.body.newNodeUrl;
+    const lastBlock = mongecoin.getLastBlock();
+    const correctBlock = lastBlock.hash === newBlock.previousBlockHash;
+    const correctIndex = lastBlock["index"] + 1 === newBlock["index"];
+
+    if (correctBlock && correctIndex) {
+        mongecoin.chain.push(newBlock);
+        mongecoin.pendingTransactions = [];
+
+        res.json({
+            note:'New block received and accepted',
+            newBlock: newBlock
+        }); 
+    }else{
+        res.json({
+            note:'New block rejected',
+            newBlock: newBlock
+        });
+    }
+
+
+
+    
+})
 
 app.listen(port, function () {
     console.log(`up and running on port ${port}...`);    
