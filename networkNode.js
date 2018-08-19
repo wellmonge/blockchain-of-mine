@@ -167,7 +167,20 @@ app.get('/mine',function(req,res){
 app.post('receive-new-block', function (req, res) {
     const newBlock = req.body.newNodeUrl;
     const lastBlock = mongecoin.getLastBlock();
-    const correct lastBlock.hash === newBlock.previousBlockHash;
+    const correctBlock = lastBlock.hash === newBlock.previousBlockHash;
+    const correctIndex = lastBlock["index"] + 1 === newBlock["index"];
+
+    if (correctBlock && correctIndex) {
+        mongecoin.chain.push(newBlock);
+        mongecoin.pendingTransactions = [];
+
+        res.json({
+            note:'New block received and accepted',
+            newBlock: newBlock
+        }); 
+    }
+
+
 
     
 })
